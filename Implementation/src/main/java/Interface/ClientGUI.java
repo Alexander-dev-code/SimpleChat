@@ -4,8 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 
 public class ClientGUI extends JFrame implements ActionListener, Thread.UncaughtExceptionHandler {
+
+    // Save chat log to disk D:
+    PrintStream saveLog = new PrintStream(new FileOutputStream("D:\\chatLog.txt", true));
 
     private static final int WIDTH = 400;
     private static final int HEIGHT = 300;
@@ -32,13 +38,17 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new ClientGUI();
+                try {
+                    new ClientGUI();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
 
-    ClientGUI () {
+    ClientGUI () throws FileNotFoundException {
         Thread.setDefaultUncaughtExceptionHandler(this);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chat");
@@ -65,12 +75,25 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         panelBottom.add(messageField, BorderLayout.CENTER);
         panelBottom.add(buttonSend, BorderLayout.EAST);
 
+
         add(scrollPaneChatArea, BorderLayout.CENTER);
         add(scrollPaneUsers, BorderLayout.EAST);
         add(panelTop, BorderLayout.NORTH);
         add(panelBottom, BorderLayout.SOUTH);
 
         cbAlwaysOnTop.addActionListener(this);
+
+        buttonSend.addActionListener( e -> {
+            chatArea.append( messageField.getText() + "\n" );
+            saveLog.println(messageField.getText()); //Add the log to the file "chatLog.txt"
+            messageField.setText(null);
+        } );
+
+        messageField.addActionListener( e -> {
+            chatArea.append( messageField.getText() + "\n" );
+            saveLog.println(messageField.getText()); //Add the log to the file "chatLog.txt"
+            messageField.setText(null);
+        } );
 
         setVisible(true);
     }
