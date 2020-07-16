@@ -1,4 +1,6 @@
-package Interface;
+package gui;
+
+import core.ChatServer;
 
 import javax.swing.*;
 import java.awt.*;
