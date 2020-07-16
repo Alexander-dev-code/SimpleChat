@@ -4,6 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Implementation/Implementation.iml" filepath="$PROJECT_DIR$/Implementation/Implementation.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SimpleChat.iml" filepath="$PROJECT_DIR$/.idea/SimpleChat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Implementation/chat/chat.iml" filepath="$PROJECT_DIR$/Implementation/chat/chat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Implementation/chat/chat-client/chat-client.iml" filepath="$PROJECT_DIR$/Implementation/chat/chat-client/chat-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Implementation/chat/chat-server/chat-server.iml" filepath="$PROJECT_DIR$/Implementation/chat/chat-server/chat-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Implementation/chat/network/network.iml" filepath="$PROJECT_DIR$/Implementation/chat/network/network.iml" />
     </modules>
   </component>
 </project>
